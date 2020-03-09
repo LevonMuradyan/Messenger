@@ -1,4 +1,5 @@
 #include "server.hpp"
+#include <string>
 
 Server::Server() {
     m_ipv4 = new SocketAddress("127.0.0.1:8000");
@@ -7,11 +8,11 @@ Server::Server() {
     int count = 0;
     while(true) {
         StreamSocket clientSocket = m_serverSocket->acceptConnection();
-        m_stream = new SocketStreamBuf(clientSocket);
-        m_buffer = new char[SIZE];    
+        char* buffer = new char[50];    
         std::cout << "Client accepted " << ++count << "\n";
-        m_stream->readFromDevice(m_buffer, SIZE);
-        std::cout << "Buffer " << m_buffer << std::endl;
+        int k = clientSocket.receiveBytes(buffer, 50);
+        std::cout << "Buffer " << k << " " << (std::string)buffer << std::endl;
+        delete buffer;
     }
         
 }
