@@ -7,14 +7,17 @@
 using SocketAddress = Poco::Net::SocketAddress;
 using StreamSocket = Poco::Net::StreamSocket;
 
-class Client {
+class Client 
+{
 private:
     SocketAddress* m_ipv4;
     StreamSocket* m_clientSocket;
     const char* m_buffer;
+
 public:
-    Client();
-    ~Client();    
+    Client() noexcept;
+
+    ~Client() noexcept;
 
 };
 
