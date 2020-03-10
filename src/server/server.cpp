@@ -9,13 +9,13 @@ Server::Server() noexcept
     int count = 0;
     while (true) {
         StreamSocket clientSocket = m_serverSocket->acceptConnection();     
-        m_inputBuffer = new char[50];    
+        m_inputBuffer = new char[500];    
         std::cout << "Client accepted " << ++count << "\n";
-        int k = clientSocket.receiveBytes(m_inputBuffer, 50);
+        int k = clientSocket.receiveBytes(m_inputBuffer, 500);
         std::cout << "Buffer " << k << " " << (std::string)m_inputBuffer << std::endl;
         std::string s("Here is your information");
         m_outputBuffer = s.c_str();
-        clientSocket.sendBytes(m_outputBuffer, sizeof(s));
+        clientSocket.sendBytes(m_outputBuffer, 500);
     
     }
         
@@ -41,7 +41,7 @@ Server& Server::operator=(const Server&& other) noexcept
 
 Server::~Server() noexcept 
 {   
-    delete m_inputBuffer;
-    delete m_outputBuffer;
+//    delete m_inputBuffer;
+//    delete m_outputBuffer;
     m_serverSocket->close();
 }

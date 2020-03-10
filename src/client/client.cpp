@@ -13,7 +13,7 @@ Client::Client() noexcept
     m_outputBuffer = s.c_str();
     m_clientSocket->sendBytes(m_outputBuffer, sizeof(s));
 
-    int k = m_clientSocket->receiveBytes(m_inputBuffer,50);
+    int k = m_clientSocket->receiveBytes(m_inputBuffer,500);
     std::cout << "Buffer " << k << " " << (std::string)m_inputBuffer << std::endl;     
   
 }
@@ -39,8 +39,8 @@ Client& Client::operator=(const Client&& other) noexcept
 
 Client::~Client() noexcept
 {    
-    delete m_inputBuffer;
-    delete m_outputBuffer;
+//    delete m_inputBuffer;
+//    delete m_outputBuffer;
     assert(nullptr != m_clientSocket);
     m_clientSocket->close();
 }
