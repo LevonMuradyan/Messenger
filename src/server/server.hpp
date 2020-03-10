@@ -13,10 +13,14 @@ class Server {
 private:
     SocketAddress* m_ipv4;
     ServerSocket* m_serverSocket;
+    const char* m_outputBuffer;
+    char* m_inputBuffer;
     
 public:
-    Server();
-    ~Server();
+    Server() noexcept;
+    Server(const Server& other) noexcept;
+    Server& operator=(const Server&& other) noexcept;
+    ~Server() noexcept;
 };
 
 #endif // SERVER_HPP
