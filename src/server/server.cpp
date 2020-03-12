@@ -39,6 +39,10 @@ Server& Server::operator=(const Server&& other) noexcept
     m_outputBuffer = std::move(other.m_outputBuffer);
 }
 
+ServerSocket* Server::getServerSocket() noexcept {
+    return m_serverSocket;
+}
+
 Server::~Server() noexcept 
 {   
 //    delete m_inputBuffer;

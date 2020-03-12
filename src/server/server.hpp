@@ -21,6 +21,7 @@ public:
     Server(const Server& other) noexcept;
     Server& operator=(const Server&& other) noexcept;
     ~Server() noexcept;
+    ServerSocket* getServerSocket() noexcept;
 };
 
 #endif // SERVER_HPP
